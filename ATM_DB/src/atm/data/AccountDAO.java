@@ -7,9 +7,11 @@ package atm.data;
 
 import atm.accesoDB.Coneccion;
 import atm.model.Account;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+    
 /**
  *
  * @author Rachel
@@ -19,18 +21,16 @@ public class AccountDAO {
     public AccountDAO(){}
     
     public void actualizarTotalBalance(double amount, int accountNumber){
-        Coneccion.setConexion();
         String sql2 = "UPDATE UNA.PCUENTA SET \"TOTALBALANCE\" ="+ amount +"WHERE ACCOUNTNUMBER ="+ accountNumber;
-        consulta(sql2);
+        update(sql2);
     }
     
     public void actualizarAvailableBalance(double amount, int accountNumber){
-        Coneccion.setConexion();
         String sql2 = "UPDATE UNA.PCUENTA SET \"AVAILABLEBALANCE\" ="+ amount +"WHERE ACCOUNTNUMBER ="+ accountNumber;
-        consulta(sql2);
+        update(sql2);
     }
     
-    public void consulta(String consulta) {
+    public void update(String consulta) {
         Statement st = null;
         
         try {
@@ -44,11 +44,12 @@ public class AccountDAO {
             st.close();
         } catch (SQLException ex) {
         }
+        
+        
     }
     
     public boolean authenticateUser( int userAccountNumber, int userPIN )
     {
-        Coneccion.setConexion();
         String sql = "Select * from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + userAccountNumber + "and u.PIN =" + userPIN;
         
         Statement st = null;
@@ -70,26 +71,37 @@ public class AccountDAO {
     }
     
     
-    public Account loadAccount(int number) {
-        Coneccion.setConexion();
-        String sql = "Select ID, ACCOUNTNUMBER, AVAILABLEBALANCE, TOTALBALANCE from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + number;
+    public Account loadAccount(Account account, int number) {
         
-        Statement st = null;
+        String sql = "Select CUENTAID, ACCOUNTNUMBER, AVAILABLEBALANCE, TOTALBALANCE from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + number;
         
+        ResultSet rs2 = consulta(sql);
         try {
-            st=Coneccion.crearStatement();
-            return (Account) st.getResultSet();
-            
-        } catch (Exception ex) {
-            System.out.println("Error buscando cuenta " + ex.getMessage());
-        }
-        
-        try {
-            st.close();
+            while (rs2.next()) {
+                account = new Account(Integer.parseInt(rs2.getString(1)),Integer.parseInt(rs2.getString(2)), Double.parseDouble(rs2.getString(3)), Double.parseDouble(rs2.getString(4)), Integer.parseInt(rs2.getString(5)));
+            }
         } catch (SQLException ex) {
+            System.out.println("Errores al obtener los resultados");
         }
+        return account;
         
-        return null;
     } 
 
+    public ResultSet consulta(String consulta) {
+        ResultSet rs = null;
+        try {
+            PreparedStatement ps = Coneccion.prepararStatament(consulta);
+            rs = ps.executeQuery();
+            System.out.println("consula hecha bien");
+        } catch (Exception ex) {
+            System.out.println("Error en consulta: " + ex.getMessage());
+        }
+        return rs;
+    }
+    
+    
+    
+    
+    
+    
 }

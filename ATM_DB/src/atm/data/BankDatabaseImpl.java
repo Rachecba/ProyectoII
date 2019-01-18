@@ -13,40 +13,29 @@ import java.util.ArrayList;
  * @author Rachel
  */
 public class BankDatabaseImpl implements BankDatabase{
-    ArrayList<Account> cuentasList = new ArrayList<>();
+    Account account;
     BankDatabaseService service;
     
     public BankDatabaseImpl()
     {
+        this.service = new BankDatabaseService();
+        account = new Account();
     }
-    
-    
     
     @Override
     public boolean authenticateUser( int userAccountNumber, int userPIN )
     {
-//        Account userAccount = loadAccount(userAccountNumber);
-//        if ( userAccount != null )
-//            return userAccount.validatePIN( userPIN );
-//        else
-//            return false;
-        
-        //despues de autenticar de una vez guarda la cuenta.
+        return service.authenticateUser(userAccountNumber, userPIN);
     }
 
     @Override
     public Account loadAccount(int number) {
-        for(Account account : cuentasList){
-            if(account.getAccountNumber() == number)
-                return account;
-        }
-        return null;
+        return service.loadAccount(this.account, number);
     }
 
     @Override
-    public boolean saveAccount(Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public BankDatabaseService getService(){
+        return this.service;
     }
-
    
 } 

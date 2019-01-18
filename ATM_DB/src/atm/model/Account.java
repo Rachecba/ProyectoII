@@ -21,13 +21,18 @@ public class Account {
     private int pin; 
     private double availableBalance; 
     private double totalBalance; 
+    private int clientID;
 
-    public Account(int id, int accountNumber, int pin, double availableBalance, double totalBalance) {
+    public Account(int id, int accountNumber, double availableBalance, double totalBalance, int clientID){
         this.id = id;
         this.accountNumber = accountNumber;
-        this.pin = pin;
         this.availableBalance = availableBalance;
         this.totalBalance = totalBalance;
+        this.clientID = clientID;
+    }
+
+    public Account() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

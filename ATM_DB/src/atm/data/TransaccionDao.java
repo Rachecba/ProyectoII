@@ -9,6 +9,9 @@ import atm.accesoDB.Coneccion;
 import atm.model.Transaccion;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -19,15 +22,20 @@ public class TransaccionDao {
     public TransaccionDao(){}
     
     public void insert(Transaccion transaccion){
-        Coneccion.setConexion();
+        
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String hora="\'" + hourdateFormat.format(date)+"\'";
+        transaccion.setHora(hora);
+        
         String sql = "Insert into UNA.PTRANSACCION values (" + transaccion.getHora() + ", " + transaccion.getNumero_ATM() + ", " + transaccion.getTipo_Transaccion()
-                     + ", " + transaccion.getId_cuenta() + ")";
+                + ", " + transaccion.getId_cuenta() + ")";
         
         Statement st = null;
         
         try {
             st=Coneccion.crearStatement();
-            st.execute(sql);
+            st.executeUpdate(sql);
         } catch (Exception ex) {
             System.out.println("Error autenticando usuario: " + ex.getMessage());
         }

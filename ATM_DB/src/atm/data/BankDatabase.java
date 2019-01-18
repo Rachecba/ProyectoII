@@ -15,6 +15,6 @@ public interface BankDatabase {
     
     boolean authenticateUser(int account, int pin);
     Account loadAccount(int account);
-    boolean saveAccount(Account account);
+    BankDatabaseService getService();
     
 }

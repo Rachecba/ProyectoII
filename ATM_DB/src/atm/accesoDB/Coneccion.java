@@ -29,7 +29,7 @@ public class Coneccion {
 //        return con;
 //    }
     
-    public PreparedStatement prepararStatament(String consulta){
+    public static PreparedStatement prepararStatament(String consulta){
         try {
             return conn.prepareStatement(consulta);
         } catch (SQLException ex) {
