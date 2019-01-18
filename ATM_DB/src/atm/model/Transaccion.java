@@ -5,19 +5,17 @@
  */
 package atm.model;
 
-import atm.data.*;
-import java.sql.Timestamp;
-
 /**
  *
  * @author tvkev
  */
 public class Transaccion {
+    private int transaccionID;
     private String hora;
     private int numero_ATM;
     private String tipo_Transaccion;
     private int id_cuenta;
-    private int amount;
+    private double amount;
   /*PARA EL TIPO DE TRANSACCION ES 
     -0 PARA LOGIN 
     -1 PARA VIEW BALANCE 
@@ -27,7 +25,7 @@ public class Transaccion {
     public Transaccion() {
     }
 
-    public Transaccion(String hora, int numero_ATM, String tipo_Transaccion, int id_cuenta, int amount) {
+    public Transaccion(String hora, int numero_ATM, String tipo_Transaccion, int id_cuenta, double amount) {
         this.hora = hora;
         this.numero_ATM = numero_ATM;
         this.tipo_Transaccion = tipo_Transaccion;
@@ -67,12 +65,11 @@ public class Transaccion {
         this.id_cuenta = id_cuenta;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int id) {
-        this.amount = id;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
-     
 }

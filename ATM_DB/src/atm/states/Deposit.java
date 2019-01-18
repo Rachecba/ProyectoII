@@ -24,7 +24,7 @@ public class Deposit extends State{
         account.credit(amount);
         context.getDao().getService().updateTotalBalance(account.getTotalBalance(), number);
         
-        context.getDao().getService().insert(account.getId(), context.getTerminalID(), "Deposit", 0);
+        context.getDao().getService().insert(account.getId(), context.getTerminalID(), "Deposit", amount);
         
         return true;
     }

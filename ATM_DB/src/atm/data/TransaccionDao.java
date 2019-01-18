@@ -21,7 +21,7 @@ public class TransaccionDao {
     
     public TransaccionDao(){}
     
-    public void insert(int id, int terminalID, String balance, int amount){
+    public void insert(int id, int terminalID, String balance, double amount){
         
         Date date = new Date();
         DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

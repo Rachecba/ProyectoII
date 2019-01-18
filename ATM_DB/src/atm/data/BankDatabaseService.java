@@ -48,7 +48,7 @@ public class BankDatabaseService {
         return this.cliente.getCliente(clientId);
     }
 
-    public void insert(int id, int terminalID, String balance, int amount) {
+    public void insert(int id, int terminalID, String balance, double amount) {
         this.transaccion.insert(id, terminalID, balance, amount);
     }
 }

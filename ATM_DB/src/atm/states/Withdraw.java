@@ -26,7 +26,7 @@ public class Withdraw extends State{
         if(account.getAvailableBalance() >= amount){
             account.debit(amount);
             context.getDao().getService().updateAvailableBalance(account.getAvailableBalance(), number);
-            context.getDao().getService().insert(account.getId(), context.getTerminalID(), "Withdrawal", 0);
+            context.getDao().getService().insert(account.getId(), context.getTerminalID(), "Withdrawal", amount);
             result = true;
         }else{
             
