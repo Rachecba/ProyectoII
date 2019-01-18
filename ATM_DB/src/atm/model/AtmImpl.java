@@ -58,7 +58,7 @@ public class AtmImpl implements Atm {
     
     @Override
     public boolean authenticateUser(int account, int pin) {
-        createTransaccion(0);
+        createTransaccion(0); //login
         return state.authenticateUser(account, pin);
     }
 
@@ -69,7 +69,7 @@ public class AtmImpl implements Atm {
 
     @Override
     public boolean credit(int account, double amount) {
-        createTransaccion(2);
+        createTransaccion(2); 
         return state.credit(account, amount);
     }
 
@@ -104,6 +104,7 @@ public class AtmImpl implements Atm {
         insersion(conect,sql2);
 
     }
+   
     public void insersion(Coneccion con,String consulta) {
         Statement st = null;
         try {

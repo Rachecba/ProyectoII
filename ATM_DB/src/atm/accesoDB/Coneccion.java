@@ -16,27 +16,28 @@ import java.util.logging.Logger;
 public class Coneccion {
 
     private static Connection conn = null;
-    private Connection con = null;
+  //  private Connection con = null;
 
-    public Connection getConexion() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            con = DriverManager.getConnection("jdbc:derby://localhost:1527/ProyectoDB", "una", "una");
-            System.out.println("Conexion realizada");
-        } catch (Exception ex) {
-            System.out.println("Error en conexion: " + ex.getMessage());
-        }
-        return con;
-    }
+//    public Connection getConexion() {
+//        try {
+//            Class.forName("org.apache.derby.jdbc.ClientDriver");
+//            con = DriverManager.getConnection("jdbc:derby://localhost:1527/ProyectoDB", "una", "una");
+//            System.out.println("Conexion realizada");
+//        } catch (Exception ex) {
+//            System.out.println("Error en conexion: " + ex.getMessage());
+//        }
+//        return con;
+//    }
+    
     public PreparedStatement prepararStatament(String consulta){
         try {
-            return con.prepareStatement(consulta);
+            return conn.prepareStatement(consulta);
         } catch (SQLException ex) {
         } 
         return null;
     }
 
-    public static void setStaticConexion() {
+    public static void setConexion() {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             conn = DriverManager.getConnection("jdbc:derby://localhost:1527/ProyectoDB", "una", "una");
@@ -45,11 +46,10 @@ public class Coneccion {
             System.out.println("Error en conexion: " + ex.getMessage());
         }
     }
+    
     public static Statement crearStatement() throws SQLException {
         return conn.createStatement();
     }
-    public Statement crearStatement2() throws SQLException{
-        return con.createStatement();
-    }  
+    
 }
 
