@@ -429,6 +429,8 @@ public class View extends  javax.swing.JFrame {
                 }else{
                     this.displayMessageLine( "\nInsufficient cash available in the ATM. \n\nPlease choose a smaller amount." );
                     logger.info("\nYour cash has been dispensed. \nPlease take your cash now.");
+                    espera(2000);
+                    subMenusMessages();
                 }
                 break;
             case 3:

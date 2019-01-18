@@ -15,9 +15,9 @@ import java.sql.Timestamp;
 public class Transaccion {
     private String hora;
     private int numero_ATM;
-    private int tipo_Transaccion;
+    private String tipo_Transaccion;
     private int id_cuenta;
-    private int id;
+    private int amount;
   /*PARA EL TIPO DE TRANSACCION ES 
     -0 PARA LOGIN 
     -1 PARA VIEW BALANCE 
@@ -27,12 +27,12 @@ public class Transaccion {
     public Transaccion() {
     }
 
-    public Transaccion(String hora, int numero_ATM, int tipo_Transaccion, int id_cuenta, int id) {
+    public Transaccion(String hora, int numero_ATM, String tipo_Transaccion, int id_cuenta, int amount) {
         this.hora = hora;
         this.numero_ATM = numero_ATM;
         this.tipo_Transaccion = tipo_Transaccion;
         this.id_cuenta = id_cuenta;
-        this.id = id;
+        this.amount = amount;
     }
 
     public String getHora() {
@@ -51,11 +51,11 @@ public class Transaccion {
         this.numero_ATM = numero_ATM;
     }
 
-    public int getTipo_Transaccion() {
+    public String getTipo_Transaccion() {
         return tipo_Transaccion;
     }
 
-    public void setTipo_Transaccion(int tipo_Transaccion) {
+    public void setTipo_Transaccion(String tipo_Transaccion) {
         this.tipo_Transaccion = tipo_Transaccion;
     }
 
@@ -67,12 +67,12 @@ public class Transaccion {
         this.id_cuenta = id_cuenta;
     }
 
-    public int getId() {
-        return id;
+    public int getAmount() {
+        return amount;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAmount(int id) {
+        this.amount = id;
     }
      
 }

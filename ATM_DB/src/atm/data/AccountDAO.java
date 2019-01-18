@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
     
 /**
  *
@@ -73,16 +74,17 @@ public class AccountDAO {
     
     public Account loadAccount(Account account, int number) {
         
-        String sql = "Select CUENTAID, ACCOUNTNUMBER, AVAILABLEBALANCE, TOTALBALANCE from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + number;
-        
+        String sql = "Select CUENTAID, ACCOUNTNUMBER, AVAILABLEBALANCE, TOTALBALANCE, ID_CLIENTE from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + number;        
         ResultSet rs2 = consulta(sql);
+        
         try {
             while (rs2.next()) {
-                account = new Account(Integer.parseInt(rs2.getString(1)),Integer.parseInt(rs2.getString(2)), Double.parseDouble(rs2.getString(3)), Double.parseDouble(rs2.getString(4)), Integer.parseInt(rs2.getString(5)));
+                 account = new Account(Integer.parseInt(rs2.getString(1)),Integer.parseInt(rs2.getString(2)), Double.parseDouble(rs2.getString(3)), Double.parseDouble(rs2.getString(4)), Integer.parseInt(rs2.getString(5)));
             }
         } catch (SQLException ex) {
-            System.out.println("Errores al obtener los resultados");
+            System.out.println("Errores al obtener los resultados:: " + ex);
         }
+        
         return account;
         
     } 
@@ -92,7 +94,6 @@ public class AccountDAO {
         try {
             PreparedStatement ps = Coneccion.prepararStatament(consulta);
             rs = ps.executeQuery();
-            System.out.println("consula hecha bien");
         } catch (Exception ex) {
             System.out.println("Error en consulta: " + ex.getMessage());
         }

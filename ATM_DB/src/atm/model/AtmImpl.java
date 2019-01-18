@@ -16,7 +16,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-
 /**
  *
  * @author Rachel
@@ -25,11 +24,14 @@ public class AtmImpl implements Atm {
     State state;
     BankDatabase dao;
     boolean authenticated;
+    int terminalID;
     
     public AtmImpl(BankDatabase bd){
         this.dao = bd;
         this.authenticated = false;
         this.state= new Login(this);
+        
+        this.terminalID = (int) (Math.random() * 100) + 1;
     }
     
     public boolean getAuthenticated(){
@@ -79,6 +81,10 @@ public class AtmImpl implements Atm {
     @Override
     public double[] getBalance(int account) {
         return state.getBalance(account);
+    }
+   
+    public int getTerminalID(){
+        return this.terminalID;
     }
     
 }

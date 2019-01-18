@@ -21,6 +21,8 @@ public class Balance extends State{
         double totalBalance = account.getTotalBalance();
         context.setState(new Start(context));
         
+        context.getDao().getService().insert(account.getId(), context.getTerminalID(), "Balance", 0);
+        
         return new double[]{availableBalance, totalBalance};
     }
     

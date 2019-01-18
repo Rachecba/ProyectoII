@@ -24,6 +24,7 @@ public class Login extends State{
         if(context.getDao().authenticateUser(number, pin)){
             context.setAuthenticated(true);
             context.setState(new Start(context));
+            context.getDao().getService().insert(context.getDao().loadAccount(number).getId(), context.getTerminalID(), "Login", 0);
             result = true;
         }else{
             result = false;

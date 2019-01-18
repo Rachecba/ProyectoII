@@ -60,11 +60,11 @@ public class Account {
     }
 
     public void credit(double amount) {
-        double aux=totalBalance += amount;
+        totalBalance = totalBalance += amount;
     }
 
     public void debit(double amount) {
-        double aux=availableBalance -= amount;
+        availableBalance = availableBalance -= amount;
     }
 
     public int getAccountNumber() {

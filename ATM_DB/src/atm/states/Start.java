@@ -27,7 +27,7 @@ public class Start extends State{
         boolean result = true;
         
         switch(type){
-            case BALANCE_INQUIRY:
+            case BALANCE_INQUIRY: 
                 context.setState(new Balance(context));
                 break;
             case WITHDRAWAL:
@@ -38,6 +38,7 @@ public class Start extends State{
                 break;
             case EXIT:
                 context.setState(new Login(context));
+                context.getDao().getService().insert(context.getDao().getAccount().getId(), context.getTerminalID(), "Logout", 0);
                 break;
             default:
                 result = false;

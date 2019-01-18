@@ -19,7 +19,6 @@ public class BankDatabaseImpl implements BankDatabase{
     public BankDatabaseImpl()
     {
         this.service = new BankDatabaseService();
-        account = new Account();
     }
     
     @Override
@@ -30,12 +29,20 @@ public class BankDatabaseImpl implements BankDatabase{
 
     @Override
     public Account loadAccount(int number) {
-        return service.loadAccount(this.account, number);
+        account = service.loadAccount(this.account, number);
+        return account;
     }
 
     @Override
     public BankDatabaseService getService(){
         return this.service;
     }
+
+    @Override
+    public Account getAccount() {
+        return account;
+    }
+    
+    
    
 } 

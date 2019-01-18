@@ -21,12 +21,13 @@ public class TransaccionDao {
     
     public TransaccionDao(){}
     
-    public void insert(Transaccion transaccion){
+    public void insert(int id, int terminalID, String balance, int amount){
         
         Date date = new Date();
         DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String hora="\'" + hourdateFormat.format(date)+"\'";
-        transaccion.setHora(hora);
+        
+        Transaccion transaccion = new Transaccion(hora, terminalID, balance, id, amount);        
         
         String sql = "Insert into UNA.PTRANSACCION values (" + transaccion.getHora() + ", " + transaccion.getNumero_ATM() + ", " + transaccion.getTipo_Transaccion()
                 + ", " + transaccion.getId_cuenta() + ")";

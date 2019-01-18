@@ -44,11 +44,11 @@ public class BankDatabaseService {
         return this.account.loadAccount(account, number);
     }
     
-    public void insert(Transaccion transaccion){
-        this.transaccion.insert(transaccion);
-    }
-    
     public Cliente getCliente(int clientId){
         return this.cliente.getCliente(clientId);
+    }
+
+    public void insert(int id, int terminalID, String balance, int amount) {
+        this.transaccion.insert(id, terminalID, balance, amount);
     }
 }
