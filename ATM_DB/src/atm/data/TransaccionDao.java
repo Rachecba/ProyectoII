@@ -22,15 +22,17 @@ public class TransaccionDao {
     public TransaccionDao(){}
     
     public void insert(int id, int terminalID, String balance, double amount){
-        
+        System.out.println("entra");
         Date date = new Date();
         DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String hora="\'" + hourdateFormat.format(date)+"\'";
+        String hora="" + hourdateFormat.format(date);
         
         Transaccion transaccion = new Transaccion(hora, terminalID, balance, id, amount);        
-        
-        String sql = "Insert into UNA.PTRANSACCION values (" + transaccion.getHora() + ", " + transaccion.getNumero_ATM() + ", " + transaccion.getTipo_Transaccion()
-                + ", " + transaccion.getId_cuenta() + ")";
+//        INSERT INTO UNA.PTRANSACCION (ACCOUNTID, TERMINALID, TRANSACTIONTYPE, AMOUNT, TIMESTAMP) 
+//	VALUES (1,1,'Login',0,'1970-01-01 00:00:00');
+        String sql = "Insert into UNA.PTRANSACCION (ACCOUNTID, TERMINALID, TRANSACTIONTYPE, AMOUNT, TIMESTAMP) "
+                + " values ("+transaccion.getId_cuenta()+","+transaccion.getNumero_ATM() +","+"'"+transaccion.getTipo_Transaccion()+"'"+","
+                +0+","+"'"+transaccion.getHora()+"')";
         
         Statement st = null;
         
