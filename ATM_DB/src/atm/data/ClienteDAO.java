@@ -19,7 +19,7 @@ public class ClienteDAO {
     public ClienteDAO(){}
     
     public Cliente getCliente(int clientId){
-        String sql = "Select * from UNA.PCLIENTE u where u.CLIENTID =" + clientId;
+        String sql = "Select * from APP.PCLIENTE u where u.CLIENTID =" + clientId;
         
         Statement st = null;
         

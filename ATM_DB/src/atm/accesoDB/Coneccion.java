@@ -40,7 +40,7 @@ public class Coneccion {
     public static void setConexion() {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/ProyectoDB", "una", "una");
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/sample", "app", "app");
             System.out.println("Conexion realizada");
         } catch (Exception ex) {
             System.out.println("Error en conexion: " + ex.getMessage());

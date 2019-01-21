@@ -22,12 +22,12 @@ public class AccountDAO {
     public AccountDAO(){}
     
     public void actualizarTotalBalance(double amount, int accountNumber){
-        String sql2 = "UPDATE UNA.PCUENTA SET \"TOTALBALANCE\" ="+ amount +"WHERE ACCOUNTNUMBER ="+ accountNumber;
+        String sql2 = "UPDATE APP.PCUENTA SET \"TOTALBALANCE\" ="+ amount +"WHERE ACCOUNTNUMBER ="+ accountNumber;
         update(sql2);
     }
     
     public void actualizarAvailableBalance(double amount, int accountNumber){
-        String sql2 = "UPDATE UNA.PCUENTA SET \"AVAILABLEBALANCE\" ="+ amount +"WHERE ACCOUNTNUMBER ="+ accountNumber;
+        String sql2 = "UPDATE APP.PCUENTA SET \"AVAILABLEBALANCE\" ="+ amount +"WHERE ACCOUNTNUMBER ="+ accountNumber;
         update(sql2);
     }
     
@@ -51,7 +51,7 @@ public class AccountDAO {
     
     public boolean authenticateUser( int userAccountNumber, int userPIN )
     {
-        String sql = "Select * from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + userAccountNumber + "and u.PIN =" + userPIN;
+        String sql = "Select * from APP.PCUENTA u where u.ACCOUNTNUMBER =" + userAccountNumber + "and u.PIN =" + userPIN;
         
         Statement st = null;
         
@@ -74,7 +74,7 @@ public class AccountDAO {
     
     public Account loadAccount(Account account, int number) {
         
-        String sql = "Select CUENTAID, ACCOUNTNUMBER, AVAILABLEBALANCE, TOTALBALANCE, ID_CLIENTE from UNA.PCUENTA u where u.ACCOUNTNUMBER =" + number;        
+        String sql = "Select CUENTAID, ACCOUNTNUMBER, AVAILABLEBALANCE, TOTALBALANCE, ID_CLIENTE from APP.PCUENTA u where u.ACCOUNTNUMBER =" + number;        
         ResultSet rs2 = consulta(sql);
         
         try {

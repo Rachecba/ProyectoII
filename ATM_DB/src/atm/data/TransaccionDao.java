@@ -28,11 +28,11 @@ public class TransaccionDao {
         String hora="" + hourdateFormat.format(date);
         
         Transaccion transaccion = new Transaccion(hora, terminalID, balance, id, amount);        
-//        INSERT INTO UNA.PTRANSACCION (ACCOUNTID, TERMINALID, TRANSACTIONTYPE, AMOUNT, TIMESTAMP) 
+//        INSERT INTO APP.PTRANSACCION (ACCOUNTID, TERMINALID, TRANSACTIONTYPE, AMOUNT, TIMESTAMP) 
 //	VALUES (1,1,'Login',0,'1970-01-01 00:00:00');
-        String sql = "Insert into UNA.PTRANSACCION (ACCOUNTID, TERMINALID, TRANSACTIONTYPE, AMOUNT, TIMESTAMP) "
+        String sql = "Insert into APP.PTRANSACCION (ACCOUNTID, TERMINALID, TRANSACTIONTYPE, AMOUNT, TIMESTAMP) "
                 + " values ("+transaccion.getId_cuenta()+","+transaccion.getNumero_ATM() +","+"'"+transaccion.getTipo_Transaccion()+"'"+","
-                +0+","+"'"+transaccion.getHora()+"')";
+                +transaccion.getAmount()+","+"'"+transaccion.getHora()+"')";
         
         Statement st = null;
         
